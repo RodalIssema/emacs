@@ -1,6 +1,5 @@
 (require 'package)
 
-
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1)) ;; disable orgmode auto indent
 
 (setq package-enable-at-statup nil)
@@ -26,7 +25,8 @@
  '(custom-enabled-themes '(dracula))
  '(custom-safe-themes
    '("0ab2aa38f12640ecde12e01c4221d24f034807929c1f859cbca444f7b0a98b3a" default))
- '(package-selected-packages '(beacon dracula-theme which-key use-package)))
+ '(package-selected-packages
+   '(company dashboard rainbow-delimiters rainbow-mode tsdkflh hungry-delete switch-window avy smex ido-vertical-mode beacon dracula-theme which-key use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
