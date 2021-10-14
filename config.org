@@ -1,0 +1,52 @@
+* Terminal
+** Change default shell to bash
+#+begin_src emacs-lisp
+  (defvar my-term-shell "/bin/zsh") ;; using bash and ansi-term for terminal
+  (defadvice ansi-term (before force-zsh)
+    (interactive (list my-term-shell)))
+  (ad-activate 'ansi-term)
+#+end_src
+
+* Disable
+** Removing things from basic emacs
+#+begin_src emacs-lisp
+  (tool-bar-mode -1);;no tool bar
+  (menu-bar-mode -1);; no menu bar
+  (scroll-bar-mode -1);; no scroll bar
+  (setq inhibit-startup-message t) ;;inhibiting ugly emacs theme first booting into
+#+end_src
+
+* Minor
+** Basing changes to make things a little nicer
+#+begin_src emacs-lisp
+  (setq make-backup-file nil);; no backup files
+  (setq auto-save-default nil) ;; no autosaves
+  (defalias 'yes-or-no-p 'y-or-n-p) ;; changing "yes or no" responses to "y or n"
+  (global-set-key (kbd "<s-return>") 'ansi-term);; key bind to call terminal
+  (setq scroll-conservatively 100)
+  (when window-system (global-hl-line-mode t)) ;;to easily find cursor (only in gui)
+  (when window-system (global-prettify-symbols-mode t)) ;;for symbols to print (only in gui)
+#+end_src
+
+* Packages
+** Install packages
+#+begin_src emacs-lisp
+  (use-package which-key ;; to help with shortcuts
+    :ensure t
+    :init
+    (which-key-mode)) ;;
+
+  (use-package beacon ;; indicates where curser is  when first opening file
+    :ensure t
+    :init
+    (beacon-mode 1))
+#+end_src
+
+* Org
+** Org Bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+end_src
